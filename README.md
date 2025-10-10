@@ -1,24 +1,43 @@
-# README
+# KakureLo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+地元の人しか知らない隠れた魅力を発信し、旅人と地域をつなぐSNSサイト 
+​
+### テーマを選んだ理由
+私は地元が好きなのですが、帰省する度に商店街のシャッターが増え、  
+かつて賑わっていた場所が静まり返っている光景に、寂しさを感じていました。  
+このような地方の過疎化に対して、少しでも地元に貢献できるような方法はないかと考えました。
 
-Things you may want to cover:
+一方、友人との会話の中で、観光案内では紹介されていない「魅力的な場所」や「知る人ぞ知る名店」  
+「地方ならではのユニークなイベント」などが多く存在することに気づきました。  
+私の地元のみならず、こうした各所の「地元民しか知らない隠れた魅力」を投稿することで、  
+地域の新たな価値を発見・共有し、外からの集客や交流のきっかけを作りたいと思い、このテーマにしました。  
 
-* Ruby version
+また、地方に訪れる方にとっても、投稿を通してニッチな情報を得たり、  
+観光ルートの参考になるなど、双方にとってメリットのある仕組みを目指しています。
+​
+### ターゲットユーザ
+- 地元の魅力を紹介したい・盛り上げたい人  
+- 地域の店舗・観光協会などの集客を望む事業者
+- ニッチな場所や名店を知りたい旅行好きな人
+- 地方文化に興味がある人
+​
+### 主な利用シーン
+- 地元民しか知らない場所、店舗、イベントなどを紹介したい時  
+- 自分が訪れる地方での隠れ名所などの情報を知りたい時  
+- 投稿している地元民や地元事業者とコンタクトを取りたい時
+​
+## 設計書
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+後ほど作成予定
+​
+## 開発環境
+- OS：Windows
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Visual Studio Code（VSCode）
+​
+## 使用素材
+後ほど記載
