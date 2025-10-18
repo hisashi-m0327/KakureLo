@@ -11,13 +11,12 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application"; 
+
+import "../stylesheets/application";
+import "../stylesheets/devise"; 
+import "../stylesheets/top.scss";
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
-
-
-import "../stylesheets/top.scss";

@@ -1,3 +1,12 @@
 body.top-page {
-  background-color: #f0f8ff;
+  background-color: #ffdd7f;
+}
+
+.top-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

@@ -14,18 +14,24 @@
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
+      <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container">
+         <%= link_to root_path, class: "navbar-brand ms-4" do %>
+          <%= image_tag "logo.png", alt: "KakureLo", class: "navbar-logo" %>
+         <% end %>
+
+         <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item"><span class="nav-link text-white">Home</span></li>
+            <li class="nav-item"><span class="nav-link text-white">Logout</span></li>
+          <% else %>
+            <li class="nav-item"><span class="nav-link text-white">Login</span></li>
+            <li class="nav-item"><span class="nav-link text-white">Sign up</span></li>
+          <% end %>
+        </ul>
+
+        </div>
+      </nav>
     </header>  
 
     <%= yield %>

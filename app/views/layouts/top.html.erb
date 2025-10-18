@@ -13,9 +13,11 @@
   </head>
 
   <body class="top-page">
-    <div class="mx-auto text-center mt-5" style="max-width: 600px;">
+    <div class="top-container d-flex flex-column justify-content-center align-items-center">
 
-    <%= image_tag "kakurelo.png", alt: "KakureLo", class: "top-logo mb-4" %>
+      <%= link_to about_path do %>
+        <%= image_tag "logo.png", alt: "KakureLo", class: "top-logo mb-4" %>
+      <% end %>
 
       <div class="d-grid gap-3">
         <%= link_to 'Log in', new_user_session_path, class: 'btn btn-info btn-lg' %>
