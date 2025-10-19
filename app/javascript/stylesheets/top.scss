@@ -1,5 +1,5 @@
 body.top-page {
-  background-color: #ffdd7f;
+  background-color: #254e62;
 }
 
 .top-container {
@@ -9,4 +9,23 @@ body.top-page {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+.btn-warm {
+  background-color: #ff9966; /* 明るいオレンジ */
+  border-color: #ff9966;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.btn-warm:hover {
+  background-color: #ff7f50; /* コーラル系（少し濃い） */
+  border-color: #ff7f50;
 }

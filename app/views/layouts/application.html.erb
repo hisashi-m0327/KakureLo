@@ -13,20 +13,44 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg bg-success">
-        <div class="container">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
          <%= link_to root_path, class: "navbar-brand ms-4" do %>
           <%= image_tag "logo.png", alt: "KakureLo", class: "navbar-logo" %>
          <% end %>
 
          <ul class="navbar-nav">
           <% if user_signed_in? %>
-            <li class="nav-item"><span class="nav-link text-white">Home</span></li>
-            <li class="nav-item"><span class="nav-link text-white">Logout</span></li>
+            <li class="nav-item">
+                <%= link_to root_path, class: "nav-link text-white" do %>
+                  <i class="fa-solid fa-house"></i> ホーム
+                <% end %>
+              </li>
+            <li class="nav-item"><span class="nav-link text-white">投稿</span></li>
+            </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white" do %>
+                  <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+                <% end %>
+              </li>
           <% else %>
-            <li class="nav-item"><span class="nav-link text-white">Login</span></li>
-            <li class="nav-item"><span class="nav-link text-white">Sign up</span></li>
+            <li class="nav-item">
+              <%= link_to root_path, class: "nav-link text-white" do %>
+                <i class="fa-solid fa-house"></i> ホーム
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class: "nav-link text-white" do %>
+                <i class="fa-solid fa-user-plus"></i>新規登録
+              <% end %>
+            </li>
+            <li class="nav-item">
+                <%= link_to new_user_session_path, class: "nav-link text-white" do %>
+                  <i class="fa-solid fa-right-to-bracket"></i>ログイン
+                <% end %>
+              </li>
+            
           <% end %>
         </ul>
 

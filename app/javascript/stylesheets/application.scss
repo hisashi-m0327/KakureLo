@@ -1,1 +1,13 @@
 @use '~bootstrap/scss/bootstrap';
+
+.navbar-custom {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  background-color: #254e62;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+}
+
