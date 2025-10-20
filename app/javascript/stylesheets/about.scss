@@ -1,0 +1,21 @@
+.photo-gallery {
+  margin-top: 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.scroll-container img {
+  display: inline-block;
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.scroll-container img:hover {
+  transform: scale(1.05);
+}

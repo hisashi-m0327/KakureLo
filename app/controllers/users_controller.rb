@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  def shadow
+  def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images
+    @posts = @user.posts
   end
 
   def edit
