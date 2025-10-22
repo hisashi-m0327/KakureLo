@@ -1,12 +1,10 @@
 <div class="vh-100 d-flex justify-content-center align-items-start" style="position: relative; overflow: hidden; padding-top: 100px;">
 
-  <!-- 背景画像 -->
   <div class="background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
     <img src="<%= asset_path('image1.jpg') %>" alt="bg-image" class="fade-in-bg" style="width: 100%; height: 100%; object-fit: cover;">
   </div>
 
-  <!-- テキスト -->
-  <div style="max-width: 600px; text-align: left; padding-left: 20px; color: white; text-shadow: 1px 1px 6px rgba(0,0,0,0.7);">
+  <div style="max-width: 600px; text-align: left; padding-left: 20px; color: white; text-shadow: 1px 1px 6px rgba(0,0,0,0.7); transform: scale(1.4); ">
     <h1>What's <img src="<%= asset_path('logo.png') %>" alt="KakureLo ロゴ" style="height: 50px;"></h1>
     <p>地元の人しか知らない <strong>“ローカルな"</strong> スポット・イベントなどを</p>
     <p>発見・紹介できるSNSです。</p>
@@ -26,4 +24,3 @@
     to { opacity: 1; }
   }
 </style>
-
