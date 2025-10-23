@@ -1,8 +1,50 @@
-<h2>プロフィール編集</h2>
-<%= form_with model: @user do |f| %>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-  <label for="inputImage">ProfileImage</label>
-  <%= f.file_field :profile_image,placeholder: "プロフィール画像", accept: "image/*" %>
-  <%= f.submit "変更を保存" %>
-<% end %>
+<div class="card w-50 mx-auto p-4 shadow-lg">
+  <h2 class="mb-4 text-center">プロフィール編集</h2>
+
+  <%= form_with model: @user, local: true do |f| %>
+
+    <div class="mb-3">
+      <%= f.label :name, "名前", class: "form-label" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "名前", autofocus: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :email, "メールアドレス", class: "form-label" %>
+      <%= f.email_field :email, class: "form-control", placeholder: "example@example.com" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :postal_code, "郵便番号", class: "form-label" %>
+      <%= f.text_field :postal_code, class: "form-control", placeholder: "123-4567" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :address, "住所", class: "form-label" %>
+      <%= f.text_field :address, class: "form-control", placeholder: "都道府県 市区町村 番地" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :phone_number, "電話番号", class: "form-label" %>
+      <%= f.telephone_field :phone_number, class: "form-control", placeholder: "090-1234-5678" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password, "パスワード（変更する場合）", class: "form-label" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "新しいパスワード" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password_confirmation, "パスワード確認", class: "form-label" %>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "もう一度入力" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
+      <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
+    </div>
+
+    <%= f.submit "変更を保存", class: "btn btn-primary w-100" %>
+
+  <% end %>
+</div>
+

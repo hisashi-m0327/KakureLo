@@ -1,19 +1,44 @@
 <div>
+  <h2>マイページ</h2>
   <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+
+  <% if @user == current_user && !@user.guest_user? %>
+    <p>
+      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary" %>
+    </p>
   <% end %>
 </div>
 
 <% @posts.each do |post| %>
-<div>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image %>
-  <% end %>
-  <p>投稿ユーザー画像:<%= image_tag post.user.get_profile_image(100,100) %></p>
-  <p>タイトル:<%= post.title %></p>
-  <p>本文:<%= post.body %></p>
-  <p>ユーザーネーム:<%= post.user.name %></p>
-</div>
+  <div class="card w-50 mx-auto mb-4 shadow-lg">
+    
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_image, class: "card-img-top rounded-top" %>
+    <% end %>
+
+    <div class="card-body">
+      
+      <div class="d-flex align-items-center mb-3">
+        <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle me-3 shadow-sm" %>
+        <div>
+          <p class="mb-0 fw-bold"><%= post.user.name %></p>
+        </div>
+      </div>
+
+      <h5 class="card-title">
+        <i class="far fa-flag"></i>
+        <strong><%= post.title %></strong>
+      </h5>
+
+      <p class="card-text">
+        <%= simple_format(post.body) %>
+      </p>
+
+      <p class="text-muted mb-0">
+        <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+      </p>
+
+    </div>
+  </div>
 <% end %>
+
