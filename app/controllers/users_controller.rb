@@ -13,8 +13,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "プロフィールを更新しました。"
+    else
+      flash.now[:alert] = "入力内容に誤りがあります。"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
 

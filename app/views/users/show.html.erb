@@ -6,6 +6,12 @@
     <p>
       <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary" %>
     </p>
+    <p>
+     <%= link_to "退会する", user_path(@user), 
+        method: :delete,
+        data: { confirm: "本当に退会しますか？\n（投稿内容・アカウント情報は削除されます）" },
+        class: "btn btn-danger" %>
+    </p>
   <% end %>
 </div>
 

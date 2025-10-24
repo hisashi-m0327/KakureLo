@@ -6,16 +6,19 @@
 
     <ul class="navbar-nav">
       <% if user_signed_in? %>
+
         <li class="nav-item">
           <%= link_to root_path, class: "nav-link text-white" do %>
             <i class="fa-solid fa-house"></i> ホーム
           <% end %>
         </li>
+
         <li class="nav-item">
           <%= link_to user_path(current_user.id), class: "nav-link text-white" do %>
             <i class="fa-regular fa-circle-user"></i>マイページ
           <% end %>
         </li>
+
         <% if user_signed_in? && !current_user.guest_user? %>  
           <li class="nav-item">
             <%= link_to new_post_path, class: "nav-link text-white" do %>
@@ -23,27 +26,32 @@
             <% end %>
           </li>
         <% end %>
+
         <li class="nav-item">
           <%= link_to posts_path, class: "nav-link text-white" do %>
             <i class="fa-regular fa-images"></i>投稿一覧
           <% end %>
         </li>
+
         <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white" do %>
             <i class="fa-solid fa-right-from-bracket"></i>ログアウト
           <% end %>
         </li>
       <% else %>
+
         <li class="nav-item">
           <%= link_to root_path, class: "nav-link text-white" do %>
             <i class="fa-solid fa-house"></i> ホーム
           <% end %>
         </li>
+
         <li class="nav-item">
           <%= link_to new_user_registration_path, class: "nav-link text-white" do %>
             <i class="fa-solid fa-user-plus"></i>新規登録
           <% end %>
         </li>
+        
         <li class="nav-item">
           <%= link_to new_user_session_path, class: "nav-link text-white" do %>
             <i class="fa-solid fa-right-to-bracket"></i>ログイン

@@ -6,8 +6,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def index
@@ -23,6 +26,15 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      flash[:notice] = "投稿を更新しました。"
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = "更新に失敗しました。入力内容を確認してください。"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
