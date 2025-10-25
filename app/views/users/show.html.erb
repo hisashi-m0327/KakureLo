@@ -1,4 +1,4 @@
-<div>
+<div class="container py-5">
   <h2>マイページ</h2>
   <h3><%= @user.name %></h3>
 
@@ -7,44 +7,44 @@
       <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary" %>
     </p>
     <p>
-     <%= link_to "退会する", user_path(@user), 
-        method: :delete,
-        data: { confirm: "本当に退会しますか？\n（投稿内容・アカウント情報は削除されます）" },
-        class: "btn btn-danger" %>
+      <%= link_to "退会する", user_path(@user), 
+          method: :delete,
+          data: { confirm: "本当に退会しますか？\n（投稿内容・アカウント情報は削除されます）" },
+          class: "btn btn-danger" %>
     </p>
   <% end %>
-</div>
 
-<% @posts.each do |post| %>
-  <div class="card w-50 mx-auto mb-4 shadow-lg">
-    
-    <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image, class: "card-img-top rounded-top" %>
-    <% end %>
+  <div class="row justify-content-center">
+    <% @posts.each do |post| %>
+      <div class="col-md-10 col-lg-8 mb-5">
+        <div class="card shadow-lg">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.get_image, class: "card-img-top rounded-top", style: "height: 300px; object-fit: cover;" %>
+          <% end %>
 
-    <div class="card-body">
-      
-      <div class="d-flex align-items-center mb-3">
-        <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle me-3 shadow-sm" %>
-        <div>
-          <p class="mb-0 fw-bold"><%= post.user.name %></p>
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle shadow-sm", style: "width: 80px; height: 80px; object-fit: cover;" %>
+              <div class="ms-3">
+                <p class="mb-0 fw-bold"><%= post.user.name %></p>
+              </div>
+            </div>
+
+            <h5 class="card-title">
+              <i class="far fa-flag"></i>
+              <strong><%= post.title %></strong>
+            </h5>
+
+            <p class="card-text">
+              <%= simple_format(post.body) %>
+            </p>
+
+            <p class="text-muted mb-0">
+              <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </p>
+          </div>
         </div>
       </div>
-
-      <h5 class="card-title">
-        <i class="far fa-flag"></i>
-        <strong><%= post.title %></strong>
-      </h5>
-
-      <p class="card-text">
-        <%= simple_format(post.body) %>
-      </p>
-
-      <p class="text-muted mb-0">
-        <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
-      </p>
-
-    </div>
+    <% end %>
   </div>
-<% end %>
-
+</div>

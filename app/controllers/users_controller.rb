@@ -22,6 +22,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+  user = current_user
+  user.destroy
+  sign_out user
+  redirect_to new_user_registration_path, notice: "退会が完了しました。"
+end
+
+
 
   private
 

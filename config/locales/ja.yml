@@ -5,6 +5,9 @@ ja:
       post:
         title: タイトル
         body: 本文
+      user:
+        address: 住所
+        telephone_number: 電話番号
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
