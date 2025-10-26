@@ -5,6 +5,7 @@ ja:
       post:
         title: タイトル
         body: 本文
+        image: 画像
       user:
         address: 住所
         telephone_number: 電話番号
