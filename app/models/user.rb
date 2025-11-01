@@ -23,7 +23,7 @@ class User < ApplicationRecord
       user.name = "guestuser"
       user.postal_code = "000-0000"
       user.address = "ゲスト住所"
-      user.phone_number = "0000000000"
+      user.telephone_number = "0000000000"
     end
   end
 
