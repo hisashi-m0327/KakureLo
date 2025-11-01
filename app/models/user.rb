@@ -21,6 +21,9 @@ class User < ApplicationRecord
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
+      user.postal_code = "000-0000"
+      user.address = "ゲスト住所"
+      user.phone_number = "0000000000"
     end
   end
 
