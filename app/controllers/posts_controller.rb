@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @post = Post.new
   end
@@ -30,7 +33,7 @@ class PostsController < ApplicationController
 
     if @post.update(post_params)
       flash[:notice] = "投稿を更新しました。"
-      redirect_to post_path(@post)
+      redirect_to @post
     else
       flash.now[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit, status: :unprocessable_entity
@@ -47,6 +50,13 @@ class PostsController < ApplicationController
 
 
   private
+
+  def correct_user
+    @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_to posts_path, alert: "他のユーザーの投稿は編集できません"
+    end
+  end
 
   def post_params
     params.require(:post).permit(:title, :image, :body)
