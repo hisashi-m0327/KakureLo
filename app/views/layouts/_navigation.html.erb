@@ -5,13 +5,19 @@
     <% end %>
 
     <ul class="navbar-nav">
-      <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to about_path, class: "nav-link text-white" do  %>
+          <i class="fa-solid fa-link"></i>about
+        <% end %>
+      </li>
 
-        <li class="nav-item">
-          <%= link_to root_path, class: "nav-link text-white" do %>
-            <i class="fa-solid fa-house"></i> ホーム
-          <% end %>
-        </li>
+      <li class="nav-item">
+        <%= link_to root_path, class: "nav-link text-white" do %>
+          <i class="fa-solid fa-house"></i> ホーム
+        <% end %>
+      </li>
+
+      <% if user_signed_in? %>
 
         <li class="nav-item">
           <%= link_to user_path(current_user.id), class: "nav-link text-white" do %>
@@ -39,13 +45,6 @@
           <% end %>
         </li>
       <% else %>
-
-        <li class="nav-item">
-          <%= link_to root_path, class: "nav-link text-white" do %>
-            <i class="fa-solid fa-house"></i> ホーム
-          <% end %>
-        </li>
-
         <li class="nav-item">
           <%= link_to new_user_registration_path, class: "nav-link text-white" do %>
             <i class="fa-solid fa-user-plus"></i>新規登録

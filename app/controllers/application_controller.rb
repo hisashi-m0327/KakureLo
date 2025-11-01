@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
-  def after_sign_out_path_for(resource)
-    new_user_session_path
+  def after_sign_out_path_for(resource_or_scope)
+    about_path
   end
 
   protected
