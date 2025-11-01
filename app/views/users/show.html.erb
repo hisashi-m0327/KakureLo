@@ -6,12 +6,6 @@
     <p>
       <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary" %>
     </p>
-    <p>
-      <%= link_to "退会する", user_path(@user), 
-          method: :delete,
-          data: { confirm: "本当に退会しますか？\n（投稿内容・アカウント情報は削除されます）" },
-          class: "btn btn-danger" %>
-    </p>
   <% end %>
 
   <div class="card-list-container py-4">
@@ -19,7 +13,7 @@
       <div class="card w-75 mx-auto mt-4 shadow-lg">
 
         <%= link_to post_path(post.id) do %>
-          <%= image_tag post.get_image, class: "card-img-top", style: "height: 300px; object-fit: cover;" %>
+          <%= image_tag post.get_image, class: "card-img-top" %>
         <% end %>
 
         <div class="card-body">
