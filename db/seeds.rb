@@ -39,7 +39,7 @@ Post.find_or_create_by!(title: "もののけの森") do |post|
   post.user = 山田 
 end
 
-Post.find_or_create_by!(title: "ノスタルジックな街並み") do |post|
+Post.find_or_create_by!(title: "ノスタルジックな風景") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
   post.body = "昔ながらの民家と季節の景色！"
   post.user = 田中
