@@ -12,7 +12,7 @@ jobs:
       with:
         node-version: 20
         cache: yarn
-        cache-dependency-path: ./KakureLo/yarn.lock
+        cache-dependency-path: ./yarn.lock
     - name: Deploy
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
