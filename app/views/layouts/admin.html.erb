@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - KakureLo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <% if admin_signed_in? %>
+    <nav style="background-color: #333; padding: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; color: white;">
+        <div>
+          <%= link_to "管理者ダッシュボード", admin_dashboards_path, style: "color: white; margin-right: 20px; text-decoration: none;" %>
+          <%= link_to "ユーザー管理", admin_users_path, style: "color: white; text-decoration: none;" %>
+        </div>
+        <div>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, style: "color: #ff9999; text-decoration: none;" %>
+        </div>
+      </div>
+    </nav>
+  <% end %>
+
+  <div style="padding: 20px;">
+    <%= yield %>
+  </div>
+</body>
+</html>

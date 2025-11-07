@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class Public::HomesController < ApplicationController
   layout 'top', only: [:top]
 
   def top
