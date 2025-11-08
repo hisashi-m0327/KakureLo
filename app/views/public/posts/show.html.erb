@@ -1,69 +1,82 @@
-<div class="card w-75 mx-auto mt-5 mb-5 shadow-lg">
-  <%= image_tag @post.get_image, class: "card-img-top rounded-top" %>
+<div class="card w-75 mx-auto mt-5 mb-5 shadow-lg rounded">
+
+  <%= image_tag @post.get_image, class: "card-img-top rounded-top", style: "object-fit: cover; max-height: 400px;" %>
 
   <div class="card-body">
-    <div class="row">
+    <div class="row g-3">
 
-      <div class="col-2 text-center">
-        <%= image_tag @post.user.get_profile_image(80,80), class: "mt-3 rounded-circle img-fluid", style: "width: 80px; height: 80px; object-fit: cover;" %>
-
+      <div class="col-auto text-center">
+        <%= image_tag @post.user.get_profile_image(80,80), class: "rounded-circle img-fluid mt-3", style: "width: 80px; height: 80px; object-fit: cover;" %>
       </div>
 
-      <div class="col-10">
+
+      <div class="col">
+
         <h3 class="card-title mb-3">
-          
           <strong>【<%= @post.title %>】</strong>
         </h3>
 
         <p class="card-text">
-          <i class="fa-solid fa-square-pen"></i><%= @post.body %>
+          <i class="fa-solid fa-square-pen me-1 text-secondary"></i>
+          <%= @post.body %>
         </p>
 
-        <p class="text-muted">
-          <i class="fas fa-user"></i> 
+        <p class="text-muted mb-2">
+          <i class="fas fa-user me-1"></i>
           <%= link_to @post.user.name, user_path(@post.user), class: "text-decoration-none text-dark" %><br>
           <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
         </p>
 
         <% if @post.user == current_user %>
-          <div class="mt-3">
+          <div class="mb-3">
             <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-primary btn-sm me-2" %>
             <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm" %>
           </div>
         <% end %>
-        <% if @post.liked_by?(current_user) %>
-          <p>
-            <%= link_to post_like_path(@post), method: :delete do %>
-             ♥<%= @post.likes.count %>いいね
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_like_path(@post), method: :post do %>
-             ♡<%= @post.likes.count %>いいね
-            <% end %>
-          </p>
-        <% end %>
-      </div>
 
-      <div>
-        <p>コメント件数: <%= @post.post_comments.count %></p>
-        <% @post.post_comments.each do |post_comment| %>
-          <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-          <%= post_comment.user.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %><%= post_comment.comment %>
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        <div class="mb-3">
+          <% if @post.liked_by?(current_user) %>
+            <%= link_to post_like_path(@post), method: :delete, class: "btn btn-light btn-sm" do %>
+              ♥ <%= @post.likes.count %> いいね
+            <% end %>
+          <% else %>
+            <%= link_to post_like_path(@post), method: :post, class: "btn btn-light btn-sm" do %>
+              ♡ <%= @post.likes.count %> いいね
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-      <div>
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+        </div>
+
+        <div class="mt-4">
+          <h5>コメント（<%= @post.post_comments.count %>）</h5>
+          <% @post.post_comments.each do |post_comment| %>
+            <div class="d-flex mb-3">
+              <div class="me-2">
+                <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle", style: "width:50px; height:50px; object-fit: cover;" %>
+              </div>
+              <div class="flex-grow-1">
+                <strong><%= post_comment.user.name %></strong> <small class="text-muted"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+                <p class="mb-1"><%= post_comment.comment %></p>
+                <% if post_comment.user == current_user %>
+                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "text-danger small" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- コメントフォーム -->
+        <div class="mt-3">
+          <%= form_with model: [@post, @post_comment], local: true do |f| %>
+            <div class="mb-2">
+              <%= f.text_area :comment, rows: 3, class: "form-control", placeholder: "コメントをここに" %>
+            </div>
+            <%= f.submit "送信する", class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
 

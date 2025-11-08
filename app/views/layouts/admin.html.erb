@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admin - KakureLo</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+  <head>
+    <title>Admin - KakureLo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<body>
-  <% if admin_signed_in? %>
-    <nav style="background-color: #333; padding: 10px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; color: white;">
-        <div>
-          <%= link_to "管理者ダッシュボード", admin_dashboards_path, style: "color: white; margin-right: 20px; text-decoration: none;" %>
-          <%= link_to "ユーザー管理", admin_users_path, style: "color: white; text-decoration: none;" %>
-        </div>
-        <div>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, style: "color: #ff9999; text-decoration: none;" %>
-        </div>
-      </div>
-    </nav>
-  <% end %>
+  <body>
+    <% if admin_signed_in? %>
+      <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
 
-  <div style="padding: 20px;">
-    <%= yield %>
-  </div>
-</body>
+          <%= link_to admin_dashboards_path, class: "navbar-brand ms-4" do %>
+            <%= image_tag "logo.png", alt: "KakureLo", class: "navbar-logo" %>
+          <% end %>
+
+          <div class="d-flex align-items-center">
+            <%= link_to "管理者ダッシュボード", admin_dashboards_path, class: "nav-link text-white fw-bold me-3" %>
+            <%= link_to "ユーザー管理", admin_users_path, class: "nav-link text-white fw-bold me-3" %>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white fw-bold" %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+
+    <div style="padding: 20px;">
+      <%= yield %>
+    </div>
+
+  </body>
 </html>
+
