@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:index, :destroy]
+    resources :users, only: [:index] do
+      member do
+        patch :toggle_suspend
+      end
+    end
   end
   
   scope module: :public do
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :destroy]
 
     devise_scope :user do
-      post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+      post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
   end
 end

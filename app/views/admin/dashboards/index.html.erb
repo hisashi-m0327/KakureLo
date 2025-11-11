@@ -1,11 +1,17 @@
 <h1 class="mb-4">全ユーザー一覧</h1>
 
+<p class="mb-3">
+  <strong>登録ユーザー数：</strong>
+  <%= @user_count %>人
+</p>
+
 <table class="table table-hover align-middle">
   <thead class="table-dark">
     <tr>
       <th>ID</th>
       <th>名前</th>
       <th>メールアドレス</th>
+      <th>投稿数</th>
       <th>登録日</th>
       <th>操作</th>
     </tr>
@@ -17,12 +23,16 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td><%= user.posts.count %></td>
         <td><%= l(user.created_at, format: :short) %></td>
+
+        <% button_text = user.suspended? ? "凍結解除" : "凍結する" %>
+        <% button_class = user.suspended? ? "btn btn-sm btn-success" : "btn btn-sm btn-warning" %>
         <td>
-          <%= link_to "削除", admin_user_path(user),
-                      method: :delete,
-                      data: { confirm: "本当に削除しますか？" },
-                      class: "btn btn-sm btn-danger" %>
+          <%= link_to button_text, toggle_suspend_admin_user_path(user),
+            method: :patch,
+            data: { confirm: "本当に変更しますか？" },
+            class: button_class %>
         </td>
       </tr>
     <% end %>
