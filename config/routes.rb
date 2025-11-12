@@ -4,13 +4,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:index] do
-      member do
-        patch :toggle_suspend
-      end
-    end
-  end
+  get 'dashboards', to: 'dashboards#index'
+  patch 'dashboards/:id/toggle_suspend', to: 'dashboards#toggle_suspend', as: :toggle_suspend_admin_dashboard
+end
+
   
   scope module: :public do
     devise_for :users

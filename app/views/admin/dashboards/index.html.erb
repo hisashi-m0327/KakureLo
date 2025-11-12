@@ -1,5 +1,12 @@
 <h1 class="mb-4">全ユーザー一覧</h1>
 
+<%= form_with url: admin_dashboards_path, method: :get, local: true, class: "mb-3" do |f| %>
+  <div class="input-group">
+    <%= f.text_field :query, value: params[:query], placeholder: "ユーザー名またはメールで検索", class: "form-control" %>
+    <button type="submit" class="btn btn-primary">検索</button>
+  </div>
+<% end %>
+
 <p class="mb-3">
   <strong>登録ユーザー数：</strong>
   <%= @user_count %>人
@@ -26,10 +33,10 @@
         <td><%= user.posts.count %></td>
         <td><%= l(user.created_at, format: :short) %></td>
 
-        <% button_text = user.suspended? ? "凍結解除" : "凍結する" %>
+        <% button_text = user.suspended? ? "解除" : "アカウント停止" %>
         <% button_class = user.suspended? ? "btn btn-sm btn-success" : "btn btn-sm btn-warning" %>
         <td>
-          <%= link_to button_text, toggle_suspend_admin_user_path(user),
+          <%= link_to button_text, admin_toggle_suspend_admin_dashboard_path(user.id),
             method: :patch,
             data: { confirm: "本当に変更しますか？" },
             class: button_class %>

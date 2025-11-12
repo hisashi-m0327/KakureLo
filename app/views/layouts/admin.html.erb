@@ -19,7 +19,7 @@
 
           <div class="d-flex align-items-center">
             <%= link_to "管理者ダッシュボード", admin_dashboards_path, class: "nav-link text-white fw-bold me-3" %>
-            <%= link_to "ユーザー管理", admin_users_path, class: "nav-link text-white fw-bold me-3" %>
+
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white fw-bold" %>
           </div>
         </div>
@@ -27,6 +27,14 @@
     <% end %>
 
     <div style="padding: 20px;">
+      <% if notice %>
+        <p><%= notice %></p>
+      <% end %>
+
+      <% if alert %>
+        <p><%= alert %></p>
+      <% end %>
+      
       <%= yield %>
     </div>
 
