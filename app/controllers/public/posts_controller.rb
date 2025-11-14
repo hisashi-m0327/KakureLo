@@ -17,13 +17,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(hidden: false)
+    @posts = Post.visible.order(created_at: :desc)
   end
 
   def show
     @post = Post.find(params[:id])
-
-    if @post.hidden? && !admin_signed_in?
+    if @post.hidden?
       redirect_to posts_path, alert: "この投稿は表示できません。"
     end
     @post_comment = PostComment.new
@@ -52,6 +51,9 @@ class Public::PostsController < ApplicationController
   end
 
 
+
+
+  
 
 
   private

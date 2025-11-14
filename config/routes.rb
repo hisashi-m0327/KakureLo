@@ -4,16 +4,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'dashboards', to: 'dashboards#index'
-    patch 'dashboards/:id/toggle_suspend', to: 'dashboards#toggle_suspend', as: :toggle_suspend_admin_dashboard
-  end
-
-  namespace :admin do
-    resources :posts, only: [:index] do
-      member do
-        patch :toggle_hidden
-      end
-    end
+    root 'users#index'
+    resources :users, only: [:show, :update]
+    resources :posts, only: [:index, :show, :update]
+    resources :post_comments, only: [:show, :update]
   end
 
   
@@ -21,6 +15,7 @@ Rails.application.routes.draw do
     devise_for :users
     root to: 'homes#top'
     get "/home/about" => "homes#about", as: "about"
+    get "search", to: "searchs#search"
 
     resources :posts do
       resource :like, only: [:create, :destroy]

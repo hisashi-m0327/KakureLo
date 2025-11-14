@@ -1,0 +1,27 @@
+<h3 class="mb-4">検索結果 "<%= @query %>"</h3>
+
+<% if @results.empty? %>
+  <p>該当する結果はありません。</p>
+<% else %>
+  <% @results.each do |item| %>
+
+    <% if @target == "user" %>
+
+      <div class="border rounded p-3 mb-3">
+        <strong><%= link_to item.name, user_path(item) %></strong>
+      </div>
+
+    <% else %>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5><%= link_to item.title, post_path(item) %></h5>
+          <p><%= truncate(item.body, length: 100) %></p>
+          <small class="text-muted">投稿者: <%= item.user.name %></small>
+        </div>
+      </div>
+
+    <% end %>
+
+  <% end %>
+<% end %>

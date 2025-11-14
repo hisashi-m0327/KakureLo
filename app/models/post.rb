@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
+  scope :visible, -> { where(hidden: false) }
+
 
   def get_image
     unless image.attached?
@@ -19,6 +21,10 @@ class Post < ApplicationRecord
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)
+  end
+
+  def self.search(query)
+    visible.where("title LIKE ? OR body LIKE ?", "%#{query}%", "%#{query}%")
   end
   
 end

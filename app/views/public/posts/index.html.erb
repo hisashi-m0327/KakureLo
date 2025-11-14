@@ -1,4 +1,24 @@
 <div class="card-list-container py-5">
+
+  <div class="card-list-container py-5">
+
+  <% if user_signed_in? %>
+    <div class="container mb-4">
+      <%= form_with url: search_path, method: :get, local: true, class: "d-flex gap-2" do %>
+
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "検索ワード" %>
+
+        <%= select_tag :target,
+              options_for_select([["投稿を検索", "post"], ["ユーザーを検索", "user"]]),
+              class: "form-select" %>
+
+        <%= submit_tag "検索", class: "btn btn-primary" %>
+
+      <% end %>
+    </div>
+  <% end %>
+
+
   <% @posts.each do |post| %>
     <div class="card w-75 mx-auto mt-4 shadow-lg">
       <%= link_to post_path(post.id) do %>

@@ -13,12 +13,12 @@
       <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
         <div class="container d-flex justify-content-between align-items-center">
 
-          <%= link_to admin_dashboards_path, class: "navbar-brand ms-4" do %>
+          <%= link_to admin_root_path, class: "navbar-brand ms-4" do %>
             <%= image_tag "logo.png", alt: "KakureLo", class: "navbar-logo" %>
           <% end %>
 
           <div class="d-flex align-items-center">
-            <%= link_to "管理者ダッシュボード", admin_dashboards_path, class: "nav-link text-white fw-bold me-3" %>
+            <%= link_to "管理者ダッシュボード", admin_root_path, class: "nav-link text-white fw-bold me-3" %>
             <%= link_to "投稿管理", admin_posts_path, class: "nav-link text-white fw-bold me-3" %>
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-white fw-bold" %>
           </div>

@@ -1,0 +1,14 @@
+<div class="card p-3 shadow-sm mb-4">
+      <h5 class="card-title"><strong>ユーザー情報</strong></h5>
+      <p><strong>ID:</strong> <%= @user.id %></p>
+      <p><strong>名前:</strong> <%= @user.name %></p>
+      <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+      <p><strong>登録日:</strong> <%= l(@user.created_at, format: :short) %></p>
+      <p><strong>アカウント状態:</strong>
+        <% if @user.suspended? %>
+          <span class="badge bg-danger">停止中</span>
+        <% else %>
+          <span class="badge bg-success">有効</span>
+        <% end %>
+      </p>
+    </div>

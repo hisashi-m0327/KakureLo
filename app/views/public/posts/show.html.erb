@@ -47,8 +47,8 @@
         </div>
 
         <div class="mt-4">
-          <h5>コメント（<%= @post.post_comments.count %>）</h5>
-          <% @post.post_comments.each do |post_comment| %>
+          <h5>コメント（<%= @post.post_comments.visible.count %>）</h5>
+          <% @post.post_comments.visible.each do |post_comment| %>
             <div class="d-flex mb-3">
               <div class="me-2">
                 <%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle", style: "width:50px; height:50px; object-fit: cover;" %>

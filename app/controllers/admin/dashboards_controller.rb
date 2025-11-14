@@ -1,15 +1,7 @@
 class Admin::DashboardsController < ApplicationController
-  layout 'admin'
-  before_action :authenticate_admin!
   
-  def index
-    if params[:query].present?
-      @users = User.where("name LIKE ? OR email LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
-    else
-      @users = User.all
-    end
-    @user_count = @users.count
-  end
+  
+  
 
   def toggle_suspend
     @user = User.find(params[:id])

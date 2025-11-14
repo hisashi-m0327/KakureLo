@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def action_is_public?
-    controller_name == 'homes' && action_name == 'top'
+    controller_name == 'homes' && %w[top about].include?(action_name)
   end
 
 end

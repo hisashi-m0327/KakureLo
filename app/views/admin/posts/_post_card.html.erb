@@ -1,0 +1,14 @@
+<div class="card p-3 shadow-sm mb-4">
+  <h5 class="card-title"><strong>投稿情報</strong></h5>
+  <p><strong>ID:</strong> <%= post.id %></p>
+  <p><strong>タイトル:</strong> <%= post.title %></p>
+  <p><strong>投稿者:</strong> <%= post.user.name %></p>
+  <p><strong>投稿日:</strong> <%= l(post.created_at, format: :short) %></p>
+  <p>
+    <% if post.hidden? %>
+      <span class="badge bg-danger">非表示中</span>
+    <% else %>
+      <span class="badge bg-success">公開中</span>
+    <% end %>
+  </p>
+</div>

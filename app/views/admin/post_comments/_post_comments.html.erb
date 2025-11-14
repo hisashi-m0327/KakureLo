@@ -1,0 +1,39 @@
+<table class="table table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>コメント内容</th>
+      <th>投稿者</th>
+      <th>投稿日</th>
+      <th>状態</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% post_comments.each do |post_comment| %>
+      <tr class="<%= 'table-secondary' if post_comment.hidden? %>">
+        <td><%= post_comment.id %></td>
+        <td><span class="text-break"><%= post_comment.comment %></span></td>
+        <td><%= post_comment.user.name %></td>
+        <td><%= l(post_comment.created_at, format: :short) %></td>
+        <td>
+          <% if post_comment.hidden? %>
+            <span class="badge bg-danger">非表示中</span>
+          <% else %>
+            <span class="badge bg-success">公開中</span>
+          <% end %>
+        </td>
+        <td>
+          <% button_text = post_comment.hidden? ? "非表示解除" : "非表示" %>
+          <% button_class = post_comment.hidden? ? "btn btn-sm btn-success" : "btn btn-sm btn-warning" %>
+
+          <%= link_to button_text, admin_post_comment_path(post_comment),
+              method: :patch,
+              data: { confirm: "本当に変更しますか？" },
+              class: button_class %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
