@@ -37,19 +37,19 @@ Post.find_or_create_by(title: "もののけの森v1") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
   post.body = "知る人ぞ知る、癒しの場所です。"
   post.user = yamada
-  post.visible = true
+  post.hidden = false
 end
 
 Post.find_or_create_by(title: "ノスタルジックな風景v1") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
   post.body = "昔ながらの民家と季節の景色！"
   post.user = tanaka
-  post.visible = true
+  post.hidden = false
 end
 
 Post.find_or_create_by(title: "日本海v1") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg")
   post.body = 'どこまでも続く水平線！'
   post.user = sato
-  post.visible = true
+  post.hidden = false
 end
