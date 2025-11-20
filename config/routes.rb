@@ -22,7 +22,11 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     end
 
-    resources :users, only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:show, :edit, :update, :destroy] do
+      member do
+        get :followings, :followers
+      end
+      resource :relationships, only: [:create, :destroy]
 
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
