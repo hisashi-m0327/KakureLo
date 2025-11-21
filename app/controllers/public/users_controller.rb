@@ -24,11 +24,21 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-  user = current_user
-  user.destroy
-  sign_out user
-  redirect_to new_user_registration_path, notice: "退会が完了しました。"
-end
+    user = current_user
+    user.destroy
+    sign_out user
+    redirect_to new_user_registration_path, notice: "退会が完了しました。"
+  end
+
+
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
 
 
 
