@@ -9,10 +9,12 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :likes, dependent: :destroy
 
-  has_many :relationships, foreign_key: :following_id, dependent: :destroy
-  has_many :followings, through: :relationships, source: :follower
-  has_many :reverse_of_relationships, class_name: :'Relationship', foreign_key: :follower_id, dependent: :destroy
-  has_many :followers, through: :reverse_of_relationships, source: :following
+  has_many :relationships, foreign_key: :follower_id, dependent: :destroy
+  has_many :followings, through: :relationships, source: :following
+
+  # 自分をフォローしているユーザー
+  has_many :reverse_relationships, class_name: "Relationship", foreign_key: :following_id, dependent: :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
 
   validates :name,presence: true
   validates :email, presence: true
@@ -60,7 +62,23 @@ end
   end
 
 
+  # 特定のユーザーをフォローしているか確認
+  def following?(user)
+    followings.include?(user)
+  end
+
+  # 特定のユーザーをフォローする
+  def follow(user)
+    relationships.create(following_id: user.id)
+  end
+
+  # 特定のユーザーにフォローされているか確認
   def is_followed_by?(user)
-    reverse_of_relationships.find_by(following_id: user.id).present?
+    followers.include?(user)
+  end
+
+  # 特定のユーザーのフォローを外す
+  def unfollow(user)
+    relationships.find_by(following_id: user.id)&.destroy
   end
 end

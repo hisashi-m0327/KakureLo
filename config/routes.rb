@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       member do
         get :followings, :followers
       end
-      resource :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy, :index]
     end
 
     devise_scope :user do
