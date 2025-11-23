@@ -1,4 +1,57 @@
-<!-- app/views/public/relationships/index.html.erb -->
-<h1>フォロー一覧</h1>
+<div class="container py-5">
+  <h2><%= @user.name %> さんのフォローリスト</h2>
 
+  <hr>
 
+  <h4>フォロー（<%= @followings.count %>）</h4>
+  <% if @followings.any? %>
+    <ul class="list-group mb-4">
+      <% @followings.each do |following| %>
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <%= image_tag following.get_profile_image(50,50), class: "rounded-circle me-3" %>
+            <%= link_to following.name, user_path(following), class: "fw-bold text-dark" %>
+          </div>
+          <% if current_user != following %>
+            <% if current_user.following?(following) %>
+              <%= link_to "フォロー解除", user_relationships_path(following), 
+                  method: :delete, class: "btn btn-dark" %>
+            <% else %>
+              <%= link_to "フォロー", user_relationships_path(following),
+                  method: :post, class: "btn btn-outline-secondary" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">フォローしているユーザーはいません。</p>
+  <% end %>
+
+  <hr>
+
+  <h4>フォロワー（<%= @followers.count %>）</h4>
+  <% if @followers.any? %>
+    <ul class="list-group">
+      <% @followers.each do |follower| %>
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <%= image_tag follower.get_profile_image(50,50), class: "rounded-circle me-3" %>
+            <%= link_to follower.name, user_path(follower), class: "fw-bold text-dark" %>
+          </div>
+          <% if current_user != follower %>
+            <% if current_user.following?(follower) %>
+              <%= link_to "フォロー解除", user_relationships_path(follower), 
+                  method: :delete, class: "btn btn-dark" %>
+            <% else %>
+              <%= link_to "フォロー", user_relationships_path(follower),
+                  method: :post, class: "btn btn-outline-secondary" %>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">フォロワーはいません。</p>
+  <% end %>
+</div>

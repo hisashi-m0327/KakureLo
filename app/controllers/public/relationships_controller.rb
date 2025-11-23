@@ -3,6 +3,11 @@ module Public
     before_action :authenticate_user!
     before_action :set_user
 
+    def index
+      @followings = @user.followings
+      @followers = @user.followers
+    end
+
     def create
       current_user.follow(@user)
       redirect_to @user
