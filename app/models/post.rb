@@ -10,6 +10,11 @@ class Post < ApplicationRecord
 
   scope :visible, -> { where(hidden: false) }
 
+  validates :address, presence: true
+
+  geocoded_by :address
+  after_validation :geocode
+
 
   def get_image
     unless image.attached?

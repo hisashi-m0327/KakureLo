@@ -27,7 +27,7 @@
 
         <% if user_signed_in? && !current_user.guest_user? %>  
           <li class="nav-item">
-            <%= link_to new_post_path, class: "nav-link text-white" do %>
+            <%= link_to new_post_path, class: "nav-link text-white", data: { turbolinks: false } do %>
               <i class="fa-regular fa-pen-to-square"></i>投稿する
             <% end %>
           </li>
