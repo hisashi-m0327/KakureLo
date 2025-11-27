@@ -33,6 +33,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :rooms, only: [:index, :create, :show] do
+      resources :messages, only: [:create]
+    end
+
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
