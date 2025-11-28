@@ -1,0 +1,12 @@
+<h1>DM一覧</h1>
+<ul>
+  <% @rooms.each do |room| %>
+    <% other = room.other_user(current_user) %>
+    <li>
+      <%= link_to (other ? other.name : "Unknown"), room_path(room) %>
+      <% if room.messages.any? %>
+        — <%= truncate(room.messages.last.content, length: 50) %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
