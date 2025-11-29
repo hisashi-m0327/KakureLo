@@ -1,25 +1,64 @@
-<h2><%= @room.other_user(current_user)&.name || "Member" %>さんへDM</h2>
+<h2 class="mb-3"><%= @room.other_user(current_user)&.name || "Member" %> さんとのDM</h2>
 
-<div id="messages" style="max-height:500px; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:10px;">
+<div id="messages" 
+     style="max-height:60vh; overflow-y:auto; padding:15px; background:#fafafa; border-radius:8px;
+            display:flex; flex-direction:column; gap:12px;">
+
+  <% prev_date = nil %>
+
   <% @messages.each do |m| %>
-    <div style="display:flex; flex-direction:column; align-items:<%= m.user == current_user ? 'flex-end' : 'flex-start' %>;">
-      <div style="background-color:<%= m.user == current_user ? '#dcf8c6' : '#f1f0f0' %>; padding:10px; border-radius:10px; max-width:60%;">
-        <p><%= simple_format(h(m.content)) %></p>
-        <small><%= l(m.created_at, format: :short) %></small>
+    <% current_date = m.created_at.to_date %>
+
+    <% if prev_date != current_date %>
+      <div style="text-align:center; margin:15px 0; color:#666; font-size:14px;">
+        ── <%= current_date.strftime('%Y/%m/%d') %> ──
       </div>
+      <% prev_date = current_date %>
+    <% end %>
+
+    <% is_me = (m.user_id == current_user.id) %>
+
+    <div style="display:flex; flex-direction:column; 
+                align-items:<%= is_me ? 'flex-end' : 'flex-start' %>;">
+      
+      <div style="
+        background-color:<%= is_me ? '#c8f4c2' : '#ffffff' %>;
+        padding:12px 14px;
+        border-radius:14px;
+        max-width:70%;
+        box-shadow:0 1px 3px rgba(0,0,0,0.1);
+        line-height:1.4;
+      ">
+        <p style="margin:0; white-space:pre-wrap;"><%= h(m.content) %></p>
+
+        <div style="text-align:right; margin-top:4px;">
+          <small style="color:#777;"><%= m.created_at.strftime('%H:%M') %></small>
+        </div>
+      </div>
+
     </div>
+
+  <% end %>
+
+</div>
+
+<div style="margin-top:15px;">
+  <%= form_with model: [@room, @message], local: false, data: { turbo: true } do |f| %>
+    <%= f.text_area :content, rows: 3, placeholder: "メッセージを入力...",
+          style:"width:100%; padding:10px; border-radius:10px; margin-bottom:8px;" %>
+    <%= f.submit "送信", class:"btn btn-primary w-100" %>
   <% end %>
 </div>
 
-<%= form_with model: [@room, @message], local: false, data: { turbo: true }, id: "new_message" do |f| %>
-  <%= f.text_area :content, rows: 3, placeholder: "メッセージを入力..." %>
-  <%= f.submit "送信" %>
-<% end %>
-
 <script>
-document.addEventListener("turbo:load", function() {
-  var el = document.getElementById('messages');
+function scrollToBottom() {
+  const el = document.getElementById('messages');
   if (el) el.scrollTop = el.scrollHeight;
-});
+}
+
+document.addEventListener("turbo:load", scrollToBottom);
+document.addEventListener("turbo:render", scrollToBottom);
+document.addEventListener("turbo:submit-end", scrollToBottom);
 </script>
+
 
