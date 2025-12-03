@@ -7,58 +7,36 @@
   <% prev_date = nil %>
 
   <% @messages.each do |m| %>
+
     <% current_date = m.created_at.to_date %>
 
     <% if prev_date != current_date %>
-      <div style="text-align:center; margin:15px 0; color:#666; font-size:14px;">
+      <div class="messages-post-date" style="text-align:center; margin:15px 0; color:#666; font-size:14px;">
         ── <%= current_date.strftime('%Y/%m/%d') %> ──
       </div>
       <% prev_date = current_date %>
     <% end %>
 
-    <% is_me = (m.user_id == current_user.id) %>
-
-    <div style="display:flex; flex-direction:column; 
-                align-items:<%= is_me ? 'flex-end' : 'flex-start' %>;">
-      
-      <div style="
-        background-color:<%= is_me ? '#c8f4c2' : '#ffffff' %>;
-        padding:12px 14px;
-        border-radius:14px;
-        max-width:70%;
-        box-shadow:0 1px 3px rgba(0,0,0,0.1);
-        line-height:1.4;
-      ">
-        <p style="margin:0; white-space:pre-wrap;"><%= h(m.content) %></p>
-
-        <div style="text-align:right; margin-top:4px;">
-          <small style="color:#777;"><%= m.created_at.strftime('%H:%M') %></small>
-        </div>
-      </div>
-
-    </div>
-
+    <%= render 'public/messages/message', m: m %>
   <% end %>
 
 </div>
 
 <div style="margin-top:15px;">
-  <%= form_with model: [@room, @message], local: false, data: { turbo: true } do |f| %>
-    <%= f.text_area :content, rows: 3, placeholder: "メッセージを入力...",
+  <%= form_with model: [@room, @message], local: false do |f| %>
+    <%= f.text_area :content, rows: 3, placeholder: "メッセージを入力...", required: true,
           style:"width:100%; padding:10px; border-radius:10px; margin-bottom:8px;" %>
     <%= f.submit "送信", class:"btn btn-primary w-100" %>
   <% end %>
 </div>
 
 <script>
-function scrollToBottom() {
-  const el = document.getElementById('messages');
-  if (el) el.scrollTop = el.scrollHeight;
-}
-
-document.addEventListener("turbo:load", scrollToBottom);
-document.addEventListener("turbo:render", scrollToBottom);
-document.addEventListener("turbo:submit-end", scrollToBottom);
+  const messageScrollBottom = () => {
+    const el = document.getElementById('messages');
+    const bottom = el.scrollHeight - el.clientHeight
+    el.scroll(0, bottom)
+  }
+  messageScrollBottom();
 </script>
 
 

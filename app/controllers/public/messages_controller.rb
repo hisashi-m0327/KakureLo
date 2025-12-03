@@ -7,11 +7,13 @@ class Public::MessagesController < ApplicationController
     @message.user = current_user
 
     if @message.save
-      redirect_to room_path(@room) 
-    else
-      @messages = @room.messages.includes(:user).order(created_at: :asc)
-      render 'rooms/show', status: :unprocessable_entity
     end
+    #if @message.save
+    #  redirect_to room_path(@room) 
+    #else
+    #  @messages = @room.messages.includes(:user).order(created_at: :asc)
+    #  render 'rooms/show', status: :unprocessable_entity
+    #end
   end
 
   private

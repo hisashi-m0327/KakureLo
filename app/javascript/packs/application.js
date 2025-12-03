@@ -16,6 +16,8 @@ import "../stylesheets/application";
 import "../stylesheets/devise"; 
 import "../stylesheets/top.scss";
 
+import "../stylesheets/messages.scss";
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

@@ -1,0 +1,13 @@
+<% is_me = (m.user_id == current_user.id) %>
+
+<div class="message-wrapper <%= is_me ? 'me' : 'other' %>">
+  <div class="message-box <%= is_me ? 'me' : 'other' %>">
+
+    <p class="message-content"><%= h(m.content) %></p>
+
+    <div class="message-time">
+      <small><%= m.created_at.strftime('%H:%M') %></small>
+    </div>
+
+  </div>
+</div>

@@ -15,6 +15,20 @@ yamada = User.find_or_create_by(email: "yamada@example.com") do |user|
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
+5.times do |i|
+  Post.create!(
+    title: "山田さんの投稿 #{i + 1}",
+    body: "これは山田さんのサンプル投稿 #{i + 1} です。",
+    image: ActiveStorage::Blob.create_and_upload!(
+      io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"),
+      filename: "sample-post1.jpg"
+    ),
+    user: yamada,
+    hidden: false,
+    address: "鹿児島県熊毛郡屋久島町宮之浦 #{i + 1} 番地"
+  )
+end
+
 tanaka = User.find_or_create_by(email: "tanaka@example.com") do |user|
   user.name = "田中 次郎"
   user.password = "password"
