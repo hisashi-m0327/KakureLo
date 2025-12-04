@@ -17,6 +17,7 @@ import "../stylesheets/devise";
 import "../stylesheets/top.scss";
 
 import "../stylesheets/messages.scss";
+import "../stylesheets/map_page.scss";
 
 Rails.start()
 Turbolinks.start()
