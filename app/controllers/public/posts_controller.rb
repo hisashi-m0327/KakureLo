@@ -17,8 +17,17 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.visible.order(created_at: :desc)
+  respond_to do |format|
+    format.html do
+      @posts = Post.visible.order(created_at: :desc).page(params[:page])
+    end
+
+    format.json do
+      @posts = Post.visible.order(created_at: :desc)
+    end
   end
+end
+
 
   def show
     @post = Post.find(params[:id])
