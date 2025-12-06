@@ -2,6 +2,8 @@ json.data do
   json.items do
     json.array!(@posts) do |post|
       json.id post.id
+      json.title post.title
+      json.show_url post_url(post)
 
       json.user do
         json.name post.user.name

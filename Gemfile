@@ -68,3 +68,5 @@ gem "net-imap"
 
 gem 'dotenv-rails'
 gem 'geocoder'
+
+gem 'kaminari','~> 1.2.1'

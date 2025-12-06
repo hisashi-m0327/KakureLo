@@ -29,12 +29,32 @@ async function initMap() {
       const latitude = item.latitude;
       const longitude = item.longitude;
 
-
       const marker = new google.maps.marker.AdvancedMarkerElement ({
         position: { lat: latitude, lng: longitude },
         map,
         title: item.user.name,
         // 他の任意のオプションもここに追加可能
+      });
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `
+          <div style="max-width: 200px;">
+            <h3>
+              <a href="${item.show_url}" style="text-decoration: none; color: #007bff;">
+                ${item.title}
+              </a>
+            </h3>
+            <p>${item.address}</p>
+            <p><strong>投稿者:</strong> ${item.user.name}</p>
+          </div>
+        `
+      });
+
+      marker.addListener("click", () => {
+        infoWindow.open({
+          anchor: marker,
+          map
+        });
       });
     });
   } catch (error) {

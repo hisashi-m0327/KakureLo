@@ -22,6 +22,10 @@
       <%= yield %>
     </div>
 
+    <% unless controller_name == "homes" && action_name == "top" %>
+      <%= render "layouts/footer" %>
+    <% end %>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>
 </html>
