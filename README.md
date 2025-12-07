@@ -29,9 +29,19 @@
 - 投稿している地元民や地元事業者とコンタクトを取りたい時
 ​
 ## 設計書
-
-後ほど作成予定
+#基本機能
+- 各種CRUD処理
+- ゲストログイン機能
+- 画像アップロード
+- いいね機能
+- コメント機能
+- フォロー機能
+- DM機能
+- 投稿・ユーザー検索機能
+- map機能
+- 管理者機能
 ​
+
 ## 開発環境
 - OS：Windows
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -40,4 +50,6 @@
 - IDE：Visual Studio Code（VSCode）
 ​
 ## 使用素材
-後ほど記載
+- フリーイラスト素材として以下を使用
+  - Adobe Stock(https://stock.adobe.com/jp/free)
+  - canva(https://www.canva.com/ja_jp/logos/templates/)
