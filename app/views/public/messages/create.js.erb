@@ -3,7 +3,7 @@ messagesPostDate = document.querySelectorAll('.messages-post-date')
 dates = [...messagesPostDate].map( o => o.innerHTML )
 currentDate = `── <%=j @message.created_at.strftime('%Y/%m/%d') %> ──`
 
-if (dates.includes(currentDate)) {
+if (!dates.includes(currentDate)) {
   $('#messages').append(`
     <div style="text-align:center; margin:15px 0; color:#666; font-size:14px;">
       ${currentDate}
