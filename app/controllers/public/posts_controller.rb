@@ -17,16 +17,16 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-  respond_to do |format|
-    format.html do
-      @posts = Post.visible.order(created_at: :desc).page(params[:page])
-    end
+    respond_to do |format|
+      format.html do
+        @posts = Post.visible.order(created_at: :desc).page(params[:page])
+      end
 
-    format.json do
-      @posts = Post.visible.order(created_at: :desc)
+      format.json do
+        @posts = Post.visible.order(created_at: :desc)
+      end
     end
   end
-end
 
 
   def show

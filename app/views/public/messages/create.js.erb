@@ -1,6 +1,6 @@
 el = document.getElementById('messages');
 messagesPostDate = document.querySelectorAll('.messages-post-date')
-dates = [...messagesPostDate].map( o => o.innerHTML )
+dates = [...messagesPostDate].map(o => o.textContent.trim());
 currentDate = `── <%=j @message.created_at.strftime('%Y/%m/%d') %> ──`
 
 if (!dates.includes(currentDate)) {
