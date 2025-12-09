@@ -5,7 +5,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.where(hidden: false)
+    @posts = @user.posts
+                 .where(hidden: false)
+                 .order(created_at: :desc)
   end
 
   def edit
