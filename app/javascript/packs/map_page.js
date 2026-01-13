@@ -12,7 +12,7 @@ async function initMap() {
 
   map = new Map(document.getElementById("map"), {
     center: { lat: 35.681236, lng: 139.767125 },
-    zoom: 15,
+    zoom: 8,
     mapId: "DEMO_MAP_ID", // 追記
     mapTypeControl: false
   });
@@ -35,6 +35,8 @@ async function initMap() {
         title: item.user.name,
         // 他の任意のオプションもここに追加可能
       });
+
+      map.setCenter({ lat: latitude, lng: longitude })
 
       const infoWindow = new google.maps.InfoWindow({
         content: `

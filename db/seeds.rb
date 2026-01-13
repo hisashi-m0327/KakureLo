@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Admin.create!(email: Rails.application.credentials.admin_login[:email],password: Rails.application.credentials.admin_login[:password])
+
 yamada = User.find_or_create_by(email: "yamada@example.com") do |user|
   user.name = "山田 太郎"
   user.password = "password"
